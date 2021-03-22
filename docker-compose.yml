@@ -1,0 +1,28 @@
+version: "3"
+services:
+  server:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    container_name: server
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    volumes:
+      - ./server:/server
+  db:
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: sample-db
+    build:
+      dockerfile: Dockerfile
+      context: ./database
+    ports:
+      - 5432:5432
+    container_name: database
+    volumes:
+      - ./database/db/pgdata:/var/lib/postgresql/data
