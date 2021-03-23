@@ -1,7 +1,12 @@
 package error_handlers
 
-func CheckError(err error) {
+import "net/http"
+
+func CheckError(err error, w http.ResponseWriter) {
 	if err != nil {
+		if w != nil {
+			w.WriteHeader(http.StatusBadRequest)
+		}
 		panic(err)
 	}
 }
