@@ -6,7 +6,7 @@ import (
 
 	// import postgres for drivers
 	_ "github.com/lib/pq"
-	"github.com/luiscaro1/go-postgres-api/server/error_handlers"
+	"github.com/luiscaro1/go-postgres-api/server/errorhandlers"
 )
 
 // Establish the config for the postgres instance
@@ -26,11 +26,11 @@ func OpenConnection() *sql.DB {
 
 	// open the connect to the database
 	db, err := sql.Open("postgres", psqlConn)
-	error_handlers.CheckError(err, nil)
+	errorhandlers.CheckError(err, nil)
 
 	// verify that the connection is in fact open
 	err = db.Ping()
-	error_handlers.CheckError(err, nil)
+	errorhandlers.CheckError(err, nil)
 
 	// return the db instance
 	return db

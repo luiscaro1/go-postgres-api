@@ -8,7 +8,7 @@ import (
 // UserRoutes holds all the routes related to the User
 func UserRoutes() *mux.Router {
 	router := mux.NewRouter()
-	router.HandleFunc("/all", controller.UserGet).Methods("GET")
+	router.HandleFunc("/get", controller.UserGet).Methods("GET")
 	router.HandleFunc("/add", controller.UserPost).Methods("POST")
 	return router
 }
